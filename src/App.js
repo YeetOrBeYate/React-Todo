@@ -10,12 +10,12 @@ class App extends React.Component {
       items:[
         {
           task: 'Organize Garage',
-          id: 1528817077286,
+          id: 1,
           completed: false
         },
         {
           task: 'Bake Cookies',
-          id: 1528817084358,
+          id: 2,
           completed: false
         }
       ]
@@ -33,12 +33,42 @@ class App extends React.Component {
     })
   }
 
+  toggleComplete = (id) =>{
+    const list = this.state.items;
+
+    this.setState({
+      items: list.map(item =>{
+        if(item.id === id){
+          return{...item, completed: !item.completed};
+        }else{
+          return item;
+        }
+      })
+    });
+    console.log("toggle ran")
+  }
+
+  clearComplete = (e)=>{
+    e.preventDefault();
+    const list = this.state.items;
+
+    this.setState({
+      items: list.filter((i)=>{
+        if(!i.completed){
+          return i;
+        }else{
+          //If its true just don't return it lol
+        }
+      })
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>Welcome to my Todo App!</h2>
-        <TodoForm addItem ={this.addItem}/>
-        <TodoList Todo = {this.state.items}/>
+        <TodoForm addItem ={this.addItem} clear = {this.clearComplete}/>
+        <TodoList Todo = {this.state.items} toggle = {this.toggleComplete}/>
       </div>
     );
   }
