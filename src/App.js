@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoForm from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
+import Search from "./components/TodoComponents/Search";
 
 class App extends React.Component {
   
@@ -63,10 +64,26 @@ class App extends React.Component {
     })
   }
 
+
+  searchByName = (search)=>{
+    const list = this.state.items;
+
+    this.setState({
+      items:list.filter((item)=>{
+        if(item.task.toUpperCase() === search.toUpperCase()){
+          return item;
+        }else{
+          //do nothing lol
+        }
+      })
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>Welcome to my Todo App!</h2>
+        <Search search = {this.searchByName}/>
         <TodoForm addItem ={this.addItem} clear = {this.clearComplete}/>
         <TodoList Todo = {this.state.items} toggle = {this.toggleComplete}/>
       </div>
