@@ -24,14 +24,15 @@ class Search extends React.Component{
     render(){
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form>
                     <label htmlFor="search"></label>
                     <input 
                     type="text" 
                     name="search" 
                     value = {this.state.search} 
                     onChange = {this.handleChange}/>
-                    <button type="submit">Search</button>
+                    <button type="submit" onClick ={this.handleSubmit}>Search</button>
+                    <button type="submit" onClick = {this.props.clearSearch} >Clear Search</button>
                 </form>
             </div>
         );

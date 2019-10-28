@@ -78,11 +78,29 @@ class App extends React.Component {
     })
   }
 
+  clearSearch =(e)=>{
+    e.preventDefault();   
+    this.setState({
+      items:[
+        {
+          task: 'Organize Garage',
+          id: 1,
+          completed: false
+        },
+        {
+          task: 'Bake Cookies',
+          id: 2,
+          completed: false
+        }
+      ]
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>Todo List</h2>
-        <Search search = {this.searchByName}/>
+        <Search search = {this.searchByName} clearSearch = {this.clearSearch}/>
         <TodoForm addItem ={this.addItem} clear = {this.clearComplete}/>
         <TodoList Todo = {this.state.items} toggle = {this.toggleComplete}/>
       </div>
