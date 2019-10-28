@@ -64,13 +64,12 @@ class App extends React.Component {
     })
   }
 
-
   searchByName = (search)=>{
     const list = this.state.items;
-
+    search = search.toUpperCase();
     this.setState({
       items:list.filter((item)=>{
-        if(item.task.toUpperCase() === search.toUpperCase()){
+        if(item.task.toUpperCase().includes(search)){
           return item;
         }else{
           //do nothing lol
@@ -82,7 +81,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h2>Welcome to my Todo App!</h2>
+        <h2>Todo List</h2>
         <Search search = {this.searchByName}/>
         <TodoForm addItem ={this.addItem} clear = {this.clearComplete}/>
         <TodoList Todo = {this.state.items} toggle = {this.toggleComplete}/>
