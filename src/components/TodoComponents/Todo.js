@@ -9,6 +9,7 @@ class Todo extends React.Component{
         return(
             <div onClick={()=>this.props.toggle(this.props.id)}>
                 <h1 style ={ this.props.completed ? {textDecoration: "line-through"} : {textDecoration: "none"}}>{this.props.task}</h1>
+                <p>{this.props.id}</p>
             </div>
         );
     }

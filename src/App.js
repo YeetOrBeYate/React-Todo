@@ -19,7 +19,11 @@ class App extends React.Component {
           id: 2,
           completed: false
         }
-      ]
+      ],
+      new:[],
+      newItems:false,
+      searched:false,
+      searchResults: []
     }
   }
 
@@ -29,70 +33,164 @@ class App extends React.Component {
       id: Date.now(),
       completed:false
     } 
-    this.setState({
-    items:[...this.state.items,object]
-    })
+    if(this.state.new.length ===0){
+      this.setState({
+        new:[...this.state.items,object],
+        newItems:true
+        })
+    }else{
+      this.setState({
+        new:[...this.state.new,object]
+        })
+    }
+    
   }
 
   toggleComplete = (id) =>{
-    const list = this.state.items;
+    
+    if(this.state.newItems===false){
 
-    this.setState({
-      items: list.map(item =>{
-        if(item.id === id){
-          return{...item, completed: !item.completed};
-        }else{
-          return item;
-        }
+      const list = this.state.items;
+      this.setState({
+        items: list.map(item =>{
+          if(item.id === id){
+            return{...item, completed: !item.completed};
+          }else{
+            return item;
+          }
+        })
+      });
+    }else{
+
+      const list = this.state.new;
+      this.setState({
+        new: list.map(item =>{
+          if(item.id === id){
+            return{...item, completed: !item.completed};
+          }else{
+            return item;
+          }
+        })
+      });
+    }
+  }
+
+  toggleSearch = (id)=>{
+    if(this.state.newItems===false){
+
+      const list = this.state.searchResults;
+      const items = this.state.items;
+      this.setState({
+        searchResults: list.map(item=>{
+          if(item.id === id){
+            return{...item, completed: !item.completed};
+          }else{
+            return item;
+          }
+        }),
+        items:items.map(item=>{
+          if(item.id === id){
+            return{...item, completed: !item.completed};
+          }else{
+            return item;
+          }
+        })
       })
-    });
-    console.log("toggle ran")
+    }else{
+      const list = this.state.searchResults;
+      const newStuff = this.state.new;
+      this.setState({
+        searchResults: list.map(item=>{
+          if(item.id === id){
+            return{...item, completed: !item.completed};
+          }else{
+            return item;
+          }
+        }),
+        new:newStuff.map(item=>{
+          if(item.id === id){
+            return{...item, completed: !item.completed};
+          }else{
+            return item;
+          }
+        })
+      })
+
+    }
+   
   }
 
   clearComplete = (e)=>{
     e.preventDefault();
-    const list = this.state.items;
 
-    this.setState({
-      items: list.filter((i)=>{
-        if(!i.completed){
-          return i;
-        }else{
-          //If its true just don't return it lol
-        }
+    if(this.state.newItems===false){
+
+      const list = this.state.items;
+      this.setState({
+        items: list.filter((i)=>{
+          if(!i.completed){
+            return i;
+          }else{
+            //If its true just don't return it lol
+          }
+        })
       })
-    })
+
+    }else{
+
+      const list = this.state.new;
+      this.setState({
+        new: list.filter((i)=>{
+          if(!i.completed){
+            return i;
+          }else{
+            //If its true just don't return it lol
+          }
+        })
+      })
+    }
+  
   }
 
   searchByName = (search)=>{
-    const list = this.state.items;
-    search = search.toUpperCase();
-    this.setState({
-      items:list.filter((item)=>{
-        if(item.task.toUpperCase().includes(search)){
-          return item;
-        }else{
-          //do nothing lol
-        }
+
+    if(this.state.newItems===false){
+      console.log("pumping out search, looking at items")
+      const list = this.state.items;
+      search = search.toUpperCase();
+      this.setState({
+        searchResults:list.filter((item)=>{
+          if(item.task.toUpperCase().includes(search)){
+            return item;
+          }else{
+            //do nothing lol
+          }
+        }),
+        searched:true
+        
       })
-    })
+    }else{
+      console.log("pumping out search, looking at new")
+      const list = this.state.new;
+      search = search.toUpperCase();
+      this.setState({
+        searchResults:list.filter((item)=>{
+          if(item.task.toUpperCase().includes(search)){
+            return item;
+          }else{
+            //do nothing lol
+          }
+        }),
+        searched:true
+      })
+    }
+   
   }
 
   clearSearch =(e)=>{
     e.preventDefault();   
     this.setState({
-      items:[
-        {
-          task: 'Organize Garage',
-          id: 1,
-          completed: false
-        },
-        {
-          task: 'Bake Cookies',
-          id: 2,
-          completed: false
-        }
-      ]
+      searched: false
     })
   }
 
@@ -102,7 +200,14 @@ class App extends React.Component {
         <h2>Todo List</h2>
         <Search search = {this.searchByName} clearSearch = {this.clearSearch}/>
         <TodoForm addItem ={this.addItem} clear = {this.clearComplete}/>
-        <TodoList Todo = {this.state.items} toggle = {this.toggleComplete}/>
+        <TodoList 
+        Todo = {this.state.items} 
+        New = {this.state.new} 
+        newItems = {this.state.newItems}
+        searched ={this.state.searched} 
+        searchResults= {this.state.searchResults}
+        toggleSearch = {this.toggleSearch}
+        toggle = {this.toggleComplete}/>
       </div>
     );
   }

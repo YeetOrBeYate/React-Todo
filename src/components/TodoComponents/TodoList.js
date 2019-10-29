@@ -13,11 +13,42 @@ class TodoList extends React.Component{
     render(){
         return(
             <div>
-                {this.props.Todo.map((todo)=>(
+                {
+                    !this.props.searched ?
+
                     <div>
-                        <Todo task={todo.task} id={todo.id} completed={todo.completed} toggle = {this.props.toggle}/>
+                    {
+                        this.props.newItems === false ?
+
+                        this.props.Todo.map((todo)=>(
+                            <div>
+                                <Todo task={todo.task} id={todo.id} completed={todo.completed} toggle = {this.props.toggle}/>
+                            </div>
+                        ))
+
+                        :
+                        
+                        this.props.New.map((todo)=>(
+                            <div>
+                                <Todo task={todo.task} id={todo.id} completed={todo.completed} toggle = {this.props.toggle}/>
+                            </div>
+                        ))
+                    }
                     </div>
-                ))}
+
+                :
+
+                    <div>
+                        {this.props.searchResults.map((todo)=>(
+                            <div>
+                                <Todo task={todo.task} id={todo.id} completed={todo.completed} toggle = {this.props.toggleSearch}/>
+                                {console.log("search is tru", this.props.searched)}
+                            </div>
+                        ))}
+                    </div>
+
+                }
+                
             </div>
         );
     }
