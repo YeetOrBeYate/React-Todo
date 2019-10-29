@@ -160,11 +160,7 @@ class App extends React.Component {
       search = search.toUpperCase();
       this.setState({
         searchResults:list.filter((item)=>{
-          if(item.task.toUpperCase().includes(search)){
-            return item;
-          }else{
-            //do nothing lol
-          }
+          return item.task.toUpperCase().includes(search);
         }),
         searched:true
         
@@ -175,11 +171,7 @@ class App extends React.Component {
       search = search.toUpperCase();
       this.setState({
         searchResults:list.filter((item)=>{
-          if(item.task.toUpperCase().includes(search)){
-            return item;
-          }else{
-            //do nothing lol
-          }
+          return item.task.toUpperCase().includes(search);
         }),
         searched:true
       })
