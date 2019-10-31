@@ -27,7 +27,7 @@ const Options = (props)=>{
         <div className="Options">
             {buttons.map((b)=>(
                 <Link to={b.to}>
-                    <button id={b.name} onClick={()=>props.toggleTab(b.id)} style={b.selected ? {background:"#616161", color: "ivory"}:{background:"#f1f1f1"}} className="yeet">{b.label}</button>
+                    <button id={b.name} onClick={()=>props.toggleTab(b.id)} style={b.selected ? {background:"#323232", color: "ivory"}:{background:"#f1f1f1"}} className="yeet">{b.label}</button>
                 </Link>
             ))}
             <div className="routes">

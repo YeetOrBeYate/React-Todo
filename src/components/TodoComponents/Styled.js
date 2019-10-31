@@ -25,3 +25,7 @@ color: black;
     cursor: pointer;
 }
 `;
+
+export const TTitle = styled.h2`
+padding-top: 3.5%;
+`;

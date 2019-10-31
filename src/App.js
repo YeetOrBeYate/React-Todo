@@ -4,6 +4,7 @@ import TodoForm from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
 import Search from "./components/TodoComponents/Search";
 import Options from "./components/TodoComponents/Options";
+import {TTitle} from "./components/TodoComponents/Styled";
 
 class App extends React.Component {
   
@@ -231,7 +232,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h2> Halloween Todo List</h2>
+        <TTitle> Halloween Todo List</TTitle>
         <Options 
         search={this.searchByName}
         clearSearch={this.clearSearch}
