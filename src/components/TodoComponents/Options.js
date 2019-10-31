@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
@@ -6,12 +6,8 @@ import Search from "./Search";
 
 const Options = (props)=>{
 
-    const yeeter= document.body.querySelector("#yeeter");
-    const yater= document.body.querySelector("#yater");
-
-    const toggleSelected =() =>{
-
-    }
+    //buttons props
+    const buttons = props.buttons;
 
     //Add and Clear props
     const addItem = props.addItem;
@@ -29,10 +25,21 @@ const Options = (props)=>{
     const toggle = props.toggle;
     return(
         <div className="Options">
-            <Link to="/">
-                <button id="yeeter" className="yeet selected">Add/Clear Items</button></Link>
+            {/* <Link to="/">
+                <button 
+                id="yeeter" 
+                className="yeet"
+                >Add/Clear Items</button></Link>
             <Link to="/search">
-                <button id="yater" className="yeet">Search</button></Link>
+                <button 
+                id="yater" 
+                className="yeet"
+                >Search</button></Link> */}
+            {buttons.map((b)=>(
+                <Link to={b.to}>
+                    <button onClick={()=>props.toggleTab(b.id)} style={b.selected ? {background:"#616161", color: "ivory"}:{background:"#f1f1f1"}} className="yeet">{b.label}</button>
+                </Link>
+            ))}
             <div className="routes">
                 <Route exact path ="/" 
                 render={()=> <TodoForm addItem={addItem} clear ={clear}/>} />

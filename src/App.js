@@ -25,7 +25,23 @@ class App extends React.Component {
       new:[],
       newItems:false,
       searched:false,
-      searchResults: []
+      searchResults: [],
+      buttons:[
+        {
+          label:'Add/Clear Items',
+          id:24,
+          selected:true,
+          to:"/"
+        
+        },
+        {
+          label:'Search',
+          id:25,
+          selected:false,
+          to:"/search"
+        
+        }
+      ]
     }
   }
 
@@ -53,6 +69,7 @@ class App extends React.Component {
     if(this.state.newItems===false){
 
       const list = this.state.items;
+      
       this.setState({
         items: list.map(item =>{
           if(item.id === id){
@@ -62,6 +79,7 @@ class App extends React.Component {
           }
         })
       });
+      
     }else{
 
       const list = this.state.new;
@@ -188,6 +206,21 @@ class App extends React.Component {
     })
   }
 
+  toggleTab=(id)=>{
+    const tabs = this.state.buttons;
+    
+    this.setState({
+      buttons:  tabs.map((tab)=>{
+        if(tab.id === id){ 
+          return {...tab, selected: !tab.selected}
+          
+        }else{
+          return {...tab, selected:!tab.selected}
+        }
+      })
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -203,7 +236,9 @@ class App extends React.Component {
         searched ={this.state.searched} 
         searchResults= {this.state.searchResults}
         toggleSearch = {this.toggleSearch}
-        toggle = {this.toggleComplete}/>
+        toggle = {this.toggleComplete}
+        buttons={this.state.buttons}
+        toggleTab={this.toggleTab}/>
         {/* <Search search = {this.searchByName} clearSearch = {this.clearSearch}/> */}
         {/* <TodoList 
         Todo = {this.state.items} 
