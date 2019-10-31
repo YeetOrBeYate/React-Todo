@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Item} from './Styled';
 class Todo extends React.Component{
     constructor(){
         super();
@@ -8,8 +8,8 @@ class Todo extends React.Component{
     render(){
         return(
             <div onClick={()=>this.props.toggle(this.props.id)}>
-                <h1 style ={ this.props.completed ? {textDecoration: "line-through"} : {textDecoration: "none"}}>{this.props.task}</h1>
-                <p>{this.props.id}</p>
+                <Item style ={ this.props.completed ? {textDecoration: "line-through"} : {textDecoration: "none"}}>{this.props.task}</Item>
+                
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {SInput, SButton} from "./Styled";
 
 class Search extends React.Component{
     constructor(){
@@ -29,13 +30,14 @@ class Search extends React.Component{
             <div>
                 <form>
                     <label htmlFor="search"></label>
-                    <input 
+                    <SInput 
                     type="text" 
                     name="search" 
-                    value = {this.state.search} 
+                    value = {this.state.search}
+                    placeholder="search your list.." 
                     onChange = {this.handleChange}/>
-                    <button type="submit" onClick ={this.handleSubmit}>Search</button>
-                    <button type="submit" onClick = {this.props.clearSearch} >Clear Search</button>
+                    <SButton  type="submit" onClick ={this.handleSubmit}>Search</SButton>
+                    <SButton  type="submit" onClick = {this.props.clearSearch} >Clear Search</SButton>
                 </form>
             </div>
         );

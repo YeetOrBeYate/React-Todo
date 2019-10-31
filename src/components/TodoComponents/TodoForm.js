@@ -1,4 +1,5 @@
 import React from "react";
+import {SInput, SButton} from "./Styled";
 
 class TodoForm extends React.Component{
     constructor(){
@@ -29,13 +30,14 @@ class TodoForm extends React.Component{
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="item"></label>
-                    <input 
+                    <SInput 
                     type="text" 
                     name="item" 
-                    value = {this.state.item} 
+                    value = {this.state.item}
+                    placeholder="add a task.." 
                     onChange = {this.handleChange}/>
-                    <button type="submit" onClick = {this.handleSubmit}>Submit</button>
-                    <button type="submit" onClick = {this.props.clear}>Clear Completed items</button>
+                    <SButton type="submit" onClick = {this.handleSubmit}>Submit</SButton>
+                    <SButton type="submit" onClick = {this.props.clear}>Clear Completed items</SButton>
                 </form>
             </div>
         );

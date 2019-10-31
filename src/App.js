@@ -1,7 +1,9 @@
 import React from 'react';
+import './App.css'
 import TodoForm from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
 import Search from "./components/TodoComponents/Search";
+import Options from "./components/TodoComponents/Options";
 
 class App extends React.Component {
   
@@ -10,12 +12,12 @@ class App extends React.Component {
     this.state = {
       items:[
         {
-          task: 'Organize Garage',
+          task: 'Buy Candy',
           id: 1,
           completed: false
         },
         {
-          task: 'Bake Cookies',
+          task: 'Carve Pumpkins',
           id: 2,
           completed: false
         }
@@ -188,11 +190,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Todo List</h2>
-        <Search search = {this.searchByName} clearSearch = {this.clearSearch}/>
-        <TodoForm addItem ={this.addItem} clear = {this.clearComplete}/>
-        <TodoList 
+      <div className="App">
+        <h2> Halloween Todo List</h2>
+        <Options 
+        search={this.searchByName}
+        clearSearch={this.clearSearch}
+        addItem={this.addItem}
+        clear={this.clearComplete}
         Todo = {this.state.items} 
         New = {this.state.new} 
         newItems = {this.state.newItems}
@@ -200,6 +204,17 @@ class App extends React.Component {
         searchResults= {this.state.searchResults}
         toggleSearch = {this.toggleSearch}
         toggle = {this.toggleComplete}/>
+        {/* <Search search = {this.searchByName} clearSearch = {this.clearSearch}/> */}
+        {/* <TodoList 
+        Todo = {this.state.items} 
+        New = {this.state.new} 
+        newItems = {this.state.newItems}
+        searched ={this.state.searched} 
+        searchResults= {this.state.searchResults}
+        toggleSearch = {this.toggleSearch}
+        toggle = {this.toggleComplete}/> */}
+        
+        {/* <TodoForm addItem ={this.addItem} clear = {this.clearComplete}/> */}
       </div>
     );
   }
