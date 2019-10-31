@@ -31,14 +31,16 @@ class App extends React.Component {
           label:'Add/Clear Items',
           id:24,
           selected:true,
-          to:"/"
+          to:"/",
+          name:"yeeter"
         
         },
         {
           label:'Search',
           id:25,
           selected:false,
-          to:"/search"
+          to:"/search",
+          name:"yater"
         
         }
       ]
