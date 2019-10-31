@@ -20,6 +20,11 @@ class App extends React.Component {
           task: 'Carve Pumpkins',
           id: 2,
           completed: false
+        },
+        {
+          task: 'Decorate Porch',
+          id: 3,
+          completed:false
         }
       ],
       new:[],
