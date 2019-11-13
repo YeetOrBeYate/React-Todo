@@ -1,0 +1,73 @@
+.App{
+    text-align: center;
+    width: 30%;
+    margin: 0 auto;
+    
+    background: coral;
+    
+}
+
+body{
+    background: #323232;
+}
+
+
+
+.searchInput{
+margin:1% 0;
+padding: 1%;
+border: 1px solid black;
+background: #323232;
+color: ivory;
+}
+.searchButton{
+background: coral;
+margin: 0 .5%;
+padding: 1%;
+border: none;
+}
+
+.Options{
+    border: 2px solid #ccc;
+    overflow:hidden;
+    background: #f1f1f1;
+}
+
+.Options .yeet{
+  /* background-color: inherit; */
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+ .Options button:hover{
+background: #ddd;
+text-decoration: underline;
+}
+
+.Options button:active{
+    background: #ccc;
+}
+
+#yeeter{
+    border-top: 2px solid #2b2b2b;
+    border-bottom: 2px solid #2b2b2b;
+    border-left: 2px solid #2b2b2b;
+}
+
+#yater{
+    border-top: 2px solid #2b2b2b;
+    border-bottom: 2px solid #2b2b2b;
+    border-right: 2px solid #2b2b2b;
+}
+
+.selected{
+    background: #616161;
+    color:ivory;
+}
+
+
+
